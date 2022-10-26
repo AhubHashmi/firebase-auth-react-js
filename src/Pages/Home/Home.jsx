@@ -9,23 +9,35 @@ import Todo from "../Todos/Todo/Todo";
 const Home = () => {
   useTitle("Home");
 
-  const isUserVerified = auth?.currentUser?.emailVerified;
-  /*  verify email  */
-  const verifyEmailInHome = () => {
-    if (auth?.currentUser?.email === null) {
-      return toast.error("Not available email of this credential");
-    }
-    sendEmailVerification(auth?.currentUser?.email);
-    toast.success(
-      `we sent you email with verification link on your ${auth?.currentUser?.email}`
-    );
-  };
+  // const isUserVerified = auth?.currentUser?.emailVerified;
+  // /*  verify email  */
+  // const verifyEmailInHome = () => {
+  //   if (auth?.currentUser?.email === null) {
+  //     return toast.error("Not available email of this credential");
+  //   }
+  //   sendEmailVerification(auth?.currentUser?.email);
+  //   toast.success(
+  //     `we sent you email with verification link on your ${auth?.currentUser?.email}`
+  //   );
+  // };
 
   return (
-    <>
+    <HomeContainer>
       <CreateTodo />
+      {/* {auth?.currentUser?.providerData[0]?.providerId === "password" &&
+        !isUserVerified ? (
+        <>
+          <div className="err">
+            <p>You need to verify yourself to continue</p>
+            <button onClick={verifyEmailInHome} className="btn">
+              Verify
+            </button>
+          </div>
+        </>
+      ) : ( */}
       <Todo />
-    </>
+      {/* )} */}
+    </HomeContainer>
   );
 };
 const HomeContainer = styled.section`

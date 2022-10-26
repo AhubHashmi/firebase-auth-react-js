@@ -15,7 +15,7 @@ import { auth, db } from "../../../Firebase/Firebase.config";
 const CreateTodo = () => {
   const { loading, setIsAuth } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [sendEmailVerification, sending] = useSendEmailVerification(auth);
+  // const [sendEmailVerification, sending] = useSendEmailVerification(auth);
   /* handleLogOut */
   const handleLogOut = () => {
     signOut(auth).then(() => {
@@ -26,15 +26,15 @@ const CreateTodo = () => {
   };
 
   /*  verify email  */
-  const verifyEmail = () => {
-    if (auth?.currentUser?.email === null) {
-      return toast.error("Not available email of this credential");
-    }
-    sendEmailVerification(auth?.currentUser?.email);
-    toast.success(
-      `we sent you email with verification link on your ${auth?.currentUser?.email}`
-    );
-  };
+  // const verifyEmail = () => {
+  //   if (auth?.currentUser?.email === null) {
+  //     return toast.error("Not available email of this credential");
+  //   }
+  //   sendEmailVerification(auth?.currentUser?.email);
+  //   toast.success(
+  //     `we sent you email with verification link on your ${auth?.currentUser?.email}`
+  //   );
+  // };
 
   /* create todo field  */
   const [todoText, setTodoText] = useState("");
@@ -58,7 +58,7 @@ const CreateTodo = () => {
       .catch((err) => console.log(err));
   };
   /* check user isVerified or not */
-  const isUserVerified = auth?.currentUser?.emailVerified;
+  // const isUserVerified = auth?.currentUser?.emailVerified;
 
   return (
     <CreateTodoContainer>
@@ -67,11 +67,11 @@ const CreateTodo = () => {
           <h3>
             ToDos By{" "}
             <span
-              className={`${!auth?.currentUser.emailVerified ? "text-danger" : "colorize"
-                }`}
+              // className={`${!auth?.currentUser.emailVerified ? "text-danger" : "colorize"
+              //   }`}
             >
               {auth?.currentUser?.displayName}
-              {auth?.currentUser.emailVerified ? (
+              {/* {auth?.currentUser.emailVerified ? (
                 <>
                   <span className="cursor-pointer" title="Verified.">
                     <MdVerified />
@@ -93,7 +93,7 @@ const CreateTodo = () => {
                     {sending ? "verifying...." : "verify"}
                   </small>
                 </>
-              )}
+              )} */}
             </span>
           </h3>
           <div className="action">
@@ -115,8 +115,8 @@ const CreateTodo = () => {
             </span>
           </div>
         </div>
-        {!isUserVerified &&
-          auth?.currentUser?.providerData[0]?.providerId === "password" ? null : (
+        {/* {!isUserVerified &&
+          auth?.currentUser?.providerData[0]?.providerId === "password" ? null : ( */}
           <div className="wrapper">
             <h1>
               Create <span className="colorize">ToDos</span>
@@ -134,7 +134,7 @@ const CreateTodo = () => {
               </button>
             </div>
           </div>
-        )}
+        {/* )} */}
       </div>
     </CreateTodoContainer>
   );
